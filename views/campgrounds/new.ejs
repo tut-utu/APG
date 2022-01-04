@@ -1,7 +1,7 @@
 <% layout('/layouts/boilerplate') %> 
 
 <div class="row">
-    <h1 class="text-center">New Campground</h1>
+    <h1 class="text-center">New Park</h1>
     <div class="col-md-6 offset-md-3">
         <form class = 'mb-3 validated-form' action="/campgrounds" method="POST"  novalidate enctype="multipart/form-data">
             <div class="mb-3">
@@ -34,9 +34,9 @@
                 <textarea class="form-control" placeholder="Leave a description here" id="description" style="height: 100px" name="campground[description]" required></textarea>
                 
               </div>
-            <button type="submit" class="btn btn-primary">Add Campground</button>
+            <button type="submit" class="btn btn-primary">Add Park</button>
+            <a href='/campgrounds' class="btn btn-secondary " tabindex="-1" role="button">back to all</a>
         </form>
-        <a href='/campgrounds'>back to all</a>
     </div>
 </div>
 

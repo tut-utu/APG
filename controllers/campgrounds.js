@@ -26,8 +26,7 @@ module.exports.createNew = async(req,res,next)=>{
     campground.images = req.files.map(f=>({url:f.path,filename:f.filename}));
     campground.author = req.user._id;
     await campground.save();
-    console.log(campground)
-    req.flash('success','Sucessfully made a new campground!');
+    req.flash('success','Sucessfully made a new park!');
     res.redirect(`/campgrounds/${campground._id}`)
 
 };
@@ -40,7 +39,7 @@ module.exports.showCamp = async (req,res)=>{
     }
     }).populate('author');
     if(!campground){
-        req.flash('error',"Can't find the campground");
+        req.flash('error',"Can't find the park");
         return res.redirect(`/campgrounds`)
     }
     res.render('campgrounds/show',{campground});
@@ -50,7 +49,7 @@ module.exports.renderEditForm =  async (req,res)=>{
     const {id} = req.params;
     const campground = await Campground.findById(id);
     if(!campground){
-        req.flash('error',"Can't find the campground");
+        req.flash('error',"Can't find the park");
         return res.redirect(`/campgrounds`)
     }
 
@@ -60,7 +59,6 @@ module.exports.renderEditForm =  async (req,res)=>{
 module.exports.updateCamp = async(req,res)=>{
     const {id} = req.params;
     const campground = await Campground.findByIdAndUpdate(id,req.body.campground)
-    console.log(req.files.map(f=>({url:f.path,filename:f.filename})))
     campground.images.push(...req.files.map(f=>({url:f.path,filename:f.filename})));
     await campground.save();
     if(req.body.deleteImages){
@@ -72,13 +70,13 @@ module.exports.updateCamp = async(req,res)=>{
         })
         
     }
-    req.flash('success','Sucessfully updated a new campground!');
+    req.flash('success','Sucessfully updated a new park!');
     res.redirect(`/campgrounds/${campground._id}`);
 };
 
 module.exports.deleteCamp = async(req,res)=>{
     const {id} = req.params;
     await Campground.findByIdAndDelete(id);
-    req.flash('success','Sucessfully delete a campground!');
+    req.flash('success','Sucessfully delete a park!');
     res.redirect(`/campgrounds`);
 };

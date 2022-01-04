@@ -2,7 +2,7 @@
         
         <% layout('/layouts/boilerplate') %>
         <div id="cluster-map"></div> 
-        <h1>All Campground</h1>
+        <h1>All AmuseParks</h1>
         
         
             <% for(let campground of campgrounds) {%>
@@ -10,7 +10,7 @@
                 <div class="row">
                     <div class="col-md-4">
                         <% if(campground.images.length){ %> 
-                        <img class="img-fluid" alt="" src="<%=campground.images[0].url%>">
+                        <img class="img-fluid" style="height: 250px;" alt="" src="<%=campground.images[0].url%>">
                         <% }else{ %>
                         <img class='img-fluid' alt='' src='https://res.cloudinary.com/hyccc/image/upload/v1641156359/YelpCamp/pi_xuawwg.png'>
                         <%}%> 
